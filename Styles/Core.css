@@ -8,15 +8,17 @@ html, body{
 
 nav{
     background-color: green;
-    font-weight: bold;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 nav h1{
     font-family: 'Roboto', sans-serif;
-    margin: 0px;
-    padding: 0px;
     color: white;
-    font-size: 40px;
+    text-align: left;
 }
 
 #nav-top{
@@ -26,3 +28,22 @@ nav h1{
     align-items: center;
 }
 
+#nav-top li{
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    list-style-type: none;
+    padding: 5px;
+}
+
+#nav-top li a{
+    text-decoration: none;
+    color: white;
+}
+
+#nav-top li a:hover{
+    color: rgba(196, 195, 195, 0.815);
+    text-decoration: underline;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    opacity: 0.8;
+}
