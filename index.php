@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<!--
+Naam: Owen Ramaekers
+Datum: 23-05-2025
+-->
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
@@ -15,7 +19,6 @@
             <button><a href="#">Post een recept</a></button>
         </div>
         <div id="posts">
-
         </div>
     </main>
 </body>
