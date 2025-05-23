@@ -1,0 +1,31 @@
+#welcome{
+    text-align: center;
+    font-size: 20px;
+    font-family: 'roboto', sans-serif;
+    color: white;
+    text-shadow: 2px 2px black;
+    background-image: url('../Images/main-bg.png');
+    background-size: cover;
+    background-position: center;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#welcome button{
+    background-color: green;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    font-family: 'roboto', sans-serif;
+    font-size: 16px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    border: none;
+}
+
+#welcome button:hover{
+    background-color: rgba(0, 128, 0, 0.815);
+}

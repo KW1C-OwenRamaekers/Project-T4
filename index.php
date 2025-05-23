@@ -10,7 +10,13 @@
 <body>
     <?php include 'Includes/nav.php'; ?>
     <main>
-        <h1>Home</h1>
+        <div id="welcome">
+            <h1>Welkom op Cooking.com</h1>
+            <button><a href="#">Post een recept</a></button>
+        </div>
+        <div id="posts">
+
+        </div>
     </main>
 </body>
 </html>
