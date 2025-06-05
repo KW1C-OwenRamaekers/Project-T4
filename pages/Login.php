@@ -43,29 +43,22 @@ Datum: 23-05-2025
 include '../Includes/nav.php';
 ?>
 <main>
-    <!-- Form for logging in/registering -->
     <form action="<?= $action ?>" method="post">
         <h1><?= $title ?></h1>
         <input type="text" name="uid" placeholder="Gebruikersnaam" autocomplete="username">
         <input type="password" name="pwd" placeholder="Wachtwoord">
         <input type="submit" value="<?= $title ?>">
     </form>
-    <!-- Link to the other form (login/register) -->
     <p><a href="<?= $link ?>"><?= $linkText ?></a></p>
 </main>
 
 <?php
-// If the submit button was clicked, check if the user exists and the password is correct
 if (isset($_POST['uid']) && isset($_POST['pwd'])) {
-    $stmt = $db->prepare('SELECT * FROM User WHERE Username = :username');
-    $stmt->execute(['username' => $_POST['uid']]);
-    $user = $stmt->fetch();
+    $user = $db->query("SELECT * FROM User WHERE Username = '{$_POST['uid']}'")->fetch();
 
-    if ($user && password_verify($_POST['pwd'], $user['Password'])) {
-        session_start();
-        $_SESSION['loggedin'] = true;
-        $_SESSION['username'] = $user['Username'];
-        $_SESSION['userid'] = $user['UserID'];
+    if ($user && $user['Password'] == $_POST['pwd']) {
+        setcookie('loggedin', true, time() + (86400 * 30), "/"); // expires in 30 days
+        setcookie('username', $user['Username'], time() + (86400 * 30), "/");
         header('Location: ../index.php');
         exit;
     } else {

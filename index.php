@@ -20,6 +20,7 @@ Datum: 23-05-2025
             <button><a id="post-button" href="#">Post een recept</a></button>
         </div>
         <div id="posts">
+            
         </div>
     </main>
     <?php include 'Includes/footer.php'; ?>
