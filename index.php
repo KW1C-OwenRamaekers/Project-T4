@@ -1,5 +1,6 @@
 <?php
 session_start();
+$db = new PDO('mysql:host=localhost;dbname=recipe_db', 'root', '');
 ?>
 <!DOCTYPE html>
 <!--
@@ -23,7 +24,18 @@ Datum: 23-05-2025
             <button><a id="post-button" href="#">Post een recept</a></button>
         </div>
         <div id="posts">
-            
+            <?php
+            $stmt = $db->prepare('SELECT * FROM Post');
+            $stmt->execute();
+            $posts = $stmt->fetchAll();
+
+            foreach ($posts as $post) {
+                echo '<div class="post">';
+                echo '<h2><a href="View_Post.php?postid='.$post['PostID'].'">'.$post['Recipe'].'</a></h2>';
+                echo '<p>'.substr($post['Recipe'], 0, 15).'...</p>';
+                echo '</div>';
+            }
+            ?>
         </div>
     </main>
     <?php include 'Includes/footer.php'; ?>
