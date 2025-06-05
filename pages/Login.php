@@ -15,14 +15,31 @@ try {
 // Otherwise, display the login form
 if (isset($_GET['show']) && $_GET['show'] == 'register') {
     $title = 'Registreren';
-    $action = '../pages/Account.php';
     $link = 'Login.php';
     $linkText = 'Al een account?';
+    $action = 'Register.php'; // Set action for registration
 } else {
     $title = 'Inloggen';
-    $action = '../pages/Account.php';
     $link = 'Login.php?show=register';
     $linkText = 'Nog geen account?';
+    $action = 'Login.php'; // Set action for login
+}
+
+if (isset($_POST['uid']) && isset($_POST['pwd'])) {
+    $user = $db->query("SELECT * FROM User WHERE Username = '{$_POST['uid']}'")->fetch();
+
+    if ($user && $user['Password'] == $_POST['pwd']) 
+    {
+        session_start();
+        $_SESSION['loggedin'] = true;
+        $_SESSION['username'] = $user['Username'];
+        header('Location: account.php'); // Redirect to index after login
+        exit;
+    } 
+    else 
+    {
+       $badpswd = '<p class="error">Gebruikersnaam en/of wachtwoord incorrect!</p>';
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -49,22 +66,10 @@ include '../Includes/nav.php';
         <input type="password" name="pwd" placeholder="Wachtwoord">
         <input type="submit" value="<?= $title ?>">
     </form>
+    <?= isset($badpswd) ? $badpswd : '' ?>
     <p><a href="<?= $link ?>"><?= $linkText ?></a></p>
 </main>
-
 <?php
-if (isset($_POST['uid']) && isset($_POST['pwd'])) {
-    $user = $db->query("SELECT * FROM User WHERE Username = '{$_POST['uid']}'")->fetch();
-
-    if ($user && $user['Password'] == $_POST['pwd']) {
-        setcookie('loggedin', true, time() + (86400 * 30), "/"); // expires in 30 days
-        setcookie('username', $user['Username'], time() + (86400 * 30), "/");
-        header('Location: ../index.php');
-        exit;
-    } else {
-        echo '<p class="error">Gebruikersnaam en/of wachtwoord incorrect!</p>';
-    }
-}
 // Include the footer
 include '../Includes/footer.php';
 ?>
