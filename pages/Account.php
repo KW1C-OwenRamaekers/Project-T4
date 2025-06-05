@@ -1,10 +1,5 @@
 <?php
 session_start();
-
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header('Location: Login.php');
-    exit();
-}
 ?>
 <html lang="nl">
 <!-- 
@@ -21,6 +16,16 @@ Creator: Owen Ramaekers
     <?php
     include '../Includes/nav.php';
     echo '<h1>Welkom, ' . $_SESSION['username'] . '</h1>';
+    ?>
+    <form action="../pages/Login.php" method="post">
+        <input type="submit" name="logout" value="Uitloggen">
+    </form>
+    <?php
+    if (isset($_POST['logout'])) {
+        session_destroy();
+        header('Location: ../pages/Login.php');
+        exit;
+    }
     ?>
 </body>
 </html>

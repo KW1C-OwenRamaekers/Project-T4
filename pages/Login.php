@@ -17,7 +17,7 @@ if (isset($_GET['show']) && $_GET['show'] == 'register') {
     $title = 'Registreren';
     $link = 'Login.php';
     $linkText = 'Al een account?';
-    $action = 'Register.php'; // Set action for registration
+    $action = 'Login.php'; // Set action for registration
 } else {
     $title = 'Inloggen';
     $link = 'Login.php?show=register';
