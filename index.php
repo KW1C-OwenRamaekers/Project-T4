@@ -31,7 +31,7 @@ Datum: 23-05-2025
 
             foreach ($posts as $post) {
                 echo '<div class="post">';
-                echo '<h2><a href="View_Post.php?postid='.$post['PostID'].'">'.$post['Recipe'].'</a></h2>';
+                echo '<h2><a href="View_Post.php?postid='.$post['PostID'].'">'.$post['Title'].'</a></h2>';
                 echo '<p>'.substr($post['Recipe'], 0, 15).'...</p>';
                 echo '</div>';
             }
