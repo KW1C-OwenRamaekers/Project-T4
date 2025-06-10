@@ -1,0 +1,16 @@
+.post {
+    margin: 20px auto;
+    width: 75%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px gray;
+}
+
+.post h2 {
+    text-align: center;
+}
+
+.post p {
+    text-align: justify;
+}
