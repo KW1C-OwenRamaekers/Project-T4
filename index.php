@@ -30,10 +30,20 @@ Datum: 23-05-2025
             $posts = $stmt->fetchAll();
 
             foreach ($posts as $post) {
+                echo '<article>';
                 echo '<div class="post">';
+                echo '<img src="'.$post['Img'].'" alt="Image voor recept">';
                 echo '<h2><a href="pages/View_Post.php?postid='.$post['PostID'].'">'.$post['Title'].'</a></h2>';
                 echo '<p>'.substr($post['Recipe'], 0, 35).'...</p>';
+                echo '<p>'.$post['Date'].'</p>';
+                echo '<p>Auteur: ';
+                $stmt = $db->prepare('SELECT Username FROM User WHERE UserID = (SELECT UserID FROM Post WHERE PostID = ?)');
+                $stmt->execute([$post['PostID']]);
+                $username = $stmt->fetchColumn();
+                echo htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
+                echo '</p>';
                 echo '</div>';
+                echo '</article>';
             }
             ?>
         </div>
