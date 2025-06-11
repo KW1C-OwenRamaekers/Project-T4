@@ -6,6 +6,11 @@ html, body{
     padding: 0px;
 }
 
+#logo{
+    text-decoration: none;
+    color: white;
+}
+
 nav{
     background-color: green;
     padding: 10px;

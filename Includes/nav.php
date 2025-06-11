@@ -1,5 +1,5 @@
     <nav>
-        <h1>Cooking.com</h1>
+        <a id="logo" href="../../index.php"><h1>Cooking.com</h1></a>
         <ul id="nav-top">
             <li><a href="../index.php">Home</a></li>
             <li><a href="../pages/Search.php">Search</a></li>

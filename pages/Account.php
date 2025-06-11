@@ -17,6 +17,7 @@ Creator: Owen Ramaekers
     include '../Includes/nav.php';
     echo '<h1>Welkom, ' . $_SESSION['username'] . '</h1>';
     ?>
-    <a href="logout.php">Logout</a>
+    <button><a href="create_post.php">Post een recept</a></button>
+    <a id="logout-button" href="logout.php">Logout</a>
 </body>
 </html>
