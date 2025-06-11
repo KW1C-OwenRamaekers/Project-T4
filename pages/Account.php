@@ -17,15 +17,6 @@ Creator: Owen Ramaekers
     include '../Includes/nav.php';
     echo '<h1>Welkom, ' . $_SESSION['username'] . '</h1>';
     ?>
-    <form action="../pages/Login.php" method="post">
-        <input type="submit" name="logout" value="Uitloggen">
-    </form>
-    <?php
-    if (isset($_POST['logout'])) {
-        session_destroy();
-        header('Location: ../pages/Login.php');
-        exit;
-    }
-    ?>
+    <a href="logout.php">Logout</a>
 </body>
 </html>
