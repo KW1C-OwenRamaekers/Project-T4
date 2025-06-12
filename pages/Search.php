@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <!--
 Naam: Owen Ramaekers
@@ -17,7 +20,7 @@ include '../Includes/nav.php';
 
 <main>
     <form action="../SearchResult.php" method="get">
-        <input type="text" name="search" placeholder="Zoek recepten...">
+        <input type="text" name="search" placeholder="Zoek recepten..." value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
         <input type="submit" value="Zoeken">
     </form>
     <?php
@@ -28,12 +31,8 @@ include '../Includes/nav.php';
             $posts = $stmt->fetchAll();
 
             foreach ($posts as $post) {
-                echo '<p><a href="../View_Post.php?postid='.$post['PostID'].'">'.$post['Recipe'].'</a></p>';
+                echo '<p><img src="'.$post['Img'].'" width="100" height="100" alt="Image voor recept"><a href="../View_Post.php?postid='.$post['PostID'].'">'.$post['Title'].'</a></p>';
             }
-        } else {
-            $search = $_GET['search'];
-            header("Location: ../SearchResult.php?search=$search");
-            exit;
         }
     ?>
 </main>

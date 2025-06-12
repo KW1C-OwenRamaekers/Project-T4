@@ -14,9 +14,11 @@ Datum: 23-05-2025
     <title>Cooking.com</title>
     <link rel="stylesheet" href="Styles/Core.css">
     <link rel="stylesheet" href="Styles/index.css">
-    <script src="Scripts/index.js" defer></script>
 </head>
 <body>
+    <?php if (isset($_GET['upload']) && $_GET['upload'] == 'success'): ?>
+        <script>alert('Je recept is succesvol geupload!');</script>
+    <?php endif; ?>
     <?php include 'Includes/nav.php'; ?>
     <main>
         <div id="welcome">

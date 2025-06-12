@@ -33,7 +33,9 @@ if (isset($_POST['uid']) && isset($_POST['pwd'])) {
         session_start();
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $user['Username'];
-        header('Location: account.php'); // Redirect to index after login
+        $_SESSION['userid'] = $user['UserID'];
+        $_SESSION['IsAdmin'] = $user['IsAdmin'];
+        header('Location: account.php'); // Redirect to account dashboard after login
         exit;
     } 
     else 
