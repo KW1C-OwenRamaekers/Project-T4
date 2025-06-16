@@ -34,11 +34,11 @@ Datum: 23-05-2025
             foreach ($posts as $post) {
                 echo '<article>';
                 echo '<div class="post">';
-                echo '<img src="'.$post['Img'].'" alt="Image voor recept">';
-                echo '<h2><a href="pages/View_Post.php?postid='.$post['PostID'].'">'.$post['Title'].'</a></h2>';
-                echo '<p>'.substr($post['Recipe'], 0, 35).'...</p>';
-                echo '<p>'.$post['Date'].'</p>';
-                echo '<p>Auteur: ';
+                echo '<img src="'.$post['Img'].'" alt="Image voor recept" width="200px" class="post-img">';
+                echo '<h2><a href="pages/View_Post.php?postid='.$post['PostID'].'" class="post-title">'.$post['Title'].'</a></h2>';
+                echo '<p class="post-recipe">'.substr($post['Recipe'], 0, 35).'...</p>';
+                echo '<p class="post-date">'.$post['Date'].'</p>';
+                echo '<p class="post-author">Auteur: ';
                 $stmt = $db->prepare('SELECT Username FROM User WHERE UserID = (SELECT UserID FROM Post WHERE PostID = ?)');
                 $stmt->execute([$post['PostID']]);
                 $username = $stmt->fetchColumn();
