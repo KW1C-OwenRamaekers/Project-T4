@@ -30,6 +30,11 @@
     background-color: rgba(0, 128, 0, 0.815);
 }
 
+#post-button{
+    color: white;
+    text-decoration: none;
+}
+
 article{
     background-color: white;
     padding: 20px;
