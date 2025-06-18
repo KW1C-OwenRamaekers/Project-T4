@@ -1,15 +1,6 @@
 <?php
-// Connect to the database
-$dsn = 'mysql:host=localhost;dbname=recipe_db';
-$user = 'root';
-$password = '';
-
-try {
-    $db = new PDO($dsn, $user, $password);
-} catch (PDOException $e) {
-    echo 'Connection failed: ' . $e->getMessage();
-    exit();
-}
+session_start();
+$db = new PDO('mysql:host=localhost;dbname=recipe_db', 'root', '');
 
 // If the show parameter is set to 'Register', display the registration form
 // Otherwise, display the login form
@@ -26,11 +17,12 @@ if (isset($_GET['show']) && $_GET['show'] == 'register') {
 }
 
 if (isset($_POST['uid']) && isset($_POST['pwd'])) {
-    $user = $db->query("SELECT * FROM User WHERE Username = '{$_POST['uid']}'")->fetch();
+    $stmt = $db->prepare("SELECT * FROM User WHERE Username = :uid");
+    $stmt->execute(['uid' => $_POST['uid']]);
+    $user = $stmt->fetch();
 
     if ($user && $user['Password'] == $_POST['pwd']) 
     {
-        session_start();
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $user['Username'];
         $_SESSION['userid'] = $user['UserID'];
