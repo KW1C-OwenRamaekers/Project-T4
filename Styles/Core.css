@@ -51,3 +51,22 @@ nav h1{
     transition: all 0.2s ease-in-out;
     opacity: 0.8;
 }
+
+footer{
+    background-color: green;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p{
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    text-align: center;
+}
