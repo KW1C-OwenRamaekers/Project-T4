@@ -41,7 +41,11 @@ article{
     border-radius: 10px;
     box-shadow: 2px 2px 5px gray;
     margin: 20px auto;
-    width: 30%;
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
+    flex-shrink: 0;
+    box-sizing: border-box;
 }
 
 .post{
