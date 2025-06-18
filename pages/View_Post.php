@@ -40,31 +40,31 @@ $post = $stmt->fetch();
             echo htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
         ?></p>
         <?php
-// Check if user is admin
-if (isset($_SESSION['userid'])) {
-    $stmt = $db->prepare('SELECT IsAdmin FROM User WHERE UserID = ?');
-    $stmt->execute([$_SESSION['userid']]);
-    $user = $stmt->fetch();
-    
-    if ($user && $user['IsAdmin']) {
-        // Handle delete request
-        if (isset($_POST['delete_post'])) {
-            $stmt = $db->prepare('DELETE FROM Post WHERE PostID = ?');
-            $stmt->execute([$_GET['postid']]);
-            echo '<script>window.location.href="../index.php";</script>';
-            exit();
-        }
+            // Check if user is admin
+            if (isset($_SESSION['userid'])) {
+                $stmt = $db->prepare('SELECT IsAdmin FROM User WHERE UserID = ?');
+                $stmt->execute([$_SESSION['userid']]);
+                $user = $stmt->fetch();
+                
+                if ($user && $user['IsAdmin']) {
+                    // Handle delete request
+                    if (isset($_POST['delete_post'])) {
+                        $stmt = $db->prepare('DELETE FROM Post WHERE PostID = ?');
+                        $stmt->execute([$_GET['postid']]);
+                        echo '<script>window.location.href="../index.php";</script>';
+                        exit();
+                    }
+                    ?>
+                    <!-- Admin Delete Button -->
+                    <div id="admin-controls">
+                        <form method="POST" onsubmit="return confirm('Weet je zeker dat je deze post wilt verwijderen?');">
+                            <button type="submit" name="delete_post" class="btn btn-danger">Post Verwijderen</button>
+                        </form>
+                    </div>
+                    <?php
+                }
+            }
         ?>
-        <!-- Admin Delete Button -->
-        <div id="admin-controls">
-            <form method="POST" onsubmit="return confirm('Weet je zeker dat je deze post wilt verwijderen?');">
-                <button type="submit" name="delete_post" class="btn btn-danger">Post Verwijderen</button>
-            </form>
-        </div>
-        <?php
-    }
-}
-?>
     </div>
     </article>
     <?php include '../Includes/footer.php'; ?>
