@@ -6,14 +6,17 @@ if (!isset($_SESSION['userid'])) {
 }
 
 $db = new PDO('mysql:host=localhost;dbname=recipe_db', 'root', '');
-$stmt = $db->prepare("INSERT INTO Post (UserID, Title, Recipe, Ingredient, Tag, Img) VALUES (:userid, :title, :recipe, :ingredient, :tag, :img)");
+$stmt = $db->prepare("INSERT INTO Post (PostID, UserID, Title, Img, Date, Servings, PrepTime, CookTime, Recipe, Ingredient, Tag) VALUES (NULL, :userid, :title, :img, NOW(), :servings, :preptime, :cooktime, :recipe, :ingredient, :tag)");
 $stmt->execute([
     ':userid' => $_SESSION['userid'],
     ':title' => $_POST['title'],
+    ':img' => $_POST['img'],
+    ':servings' => $_POST['servings'],
+    ':preptime' => $_POST['preptime'],
+    ':cooktime' => $_POST['cooktime'],
     ':recipe' => $_POST['recipe'],
     ':ingredient' => $_POST['ingredients'],
-    ':tag' => $_POST['tags'],
-    ':img' => $_POST['img']
+    ':tag' => $_POST['tags']
 ]);
 
 header('Location: ../index.php?upload=success');

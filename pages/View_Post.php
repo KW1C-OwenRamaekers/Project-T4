@@ -1,7 +1,7 @@
 <?php
 session_start();
 $db = new PDO('mysql:host=localhost;dbname=recipe_db', 'root', '');
-$stmt = $db->prepare('SELECT Title FROM Post WHERE PostID = ?');
+$stmt = $db->prepare('SELECT PostID, UserID, Title, Img, Date, Servings, PrepTime, CookTime, Recipe, Ingredient, Tag FROM Post WHERE PostID = ?');
 $stmt->execute([$_GET['postid']]);
 $post = $stmt->fetch();
 ?>
@@ -22,11 +22,11 @@ $post = $stmt->fetch();
     <?php include '../Includes/nav.php'; ?>
     <article>
     <h1 id="post-title"><?php echo htmlspecialchars($post['Title'], ENT_QUOTES, 'UTF-8'); ?></h1>
-    <?php
-    $stmt = $db->prepare('SELECT Recipe, Ingredient, Tag FROM Post WHERE PostID = ?');
-    $stmt->execute([$_GET['postid']]);
-    $post = $stmt->fetch();
-    ?>
+    <img src="<?php echo htmlspecialchars($post['Img'], ENT_QUOTES, 'UTF-8'); ?>" alt="Image voor recept" width="200px" class="post-img">
+    <p id="date">Datum: <?php echo htmlspecialchars($post['Date'], ENT_QUOTES, 'UTF-8'); ?></p>
+    <p id="servings">Aantal personen: <?php echo htmlspecialchars($post['Servings'], ENT_QUOTES, 'UTF-8'); ?></p>
+    <p id="preptime">Bereidingstijd: <?php echo htmlspecialchars($post['PrepTime'], ENT_QUOTES, 'UTF-8'); ?> min</p>
+    <p id="cooktime">Kooktijd: <?php echo htmlspecialchars($post['CookTime'], ENT_QUOTES, 'UTF-8'); ?> min</p>
     <div id="post-content">
         <p id="recipe">Recept: <?php echo htmlspecialchars($post['Recipe'], ENT_QUOTES, 'UTF-8'); ?></p>
         <p id="ingredients">Ingredienten: <?php echo htmlspecialchars($post['Ingredient'], ENT_QUOTES, 'UTF-8'); ?></p>
@@ -71,3 +71,4 @@ $post = $stmt->fetch();
 </body>
 </body>
 </html>
+
