@@ -23,7 +23,11 @@ Datum: 23-05-2025
     <main>
         <div id="welcome">
             <h1>Welkom op Cooking.com</h1>
-            <button><a id="post-button" href="#">Post een recept</a></button>
+            <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']): ?>
+                <button><a id="post-button" href="pages/create_post.php">Post een recept</a></button>
+            <?php else: ?>
+                <p>Log in om een recept te posten.</p>
+            <?php endif; ?>
         </div>
         <div id="posts">
             <?php
