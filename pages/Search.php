@@ -18,8 +18,8 @@ Datum: 23-05-2025
 <?php include '../Includes/nav.php'; ?>
 <main>
     <form action="Search.php" method="get">
-        <input type="text" name="search" placeholder="Zoek recepten..." value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
-        <input type="submit" value="Zoeken">
+        <input type="text" name="search" placeholder="Zoek recepten..." id="search-input" value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+        <input type="submit" value="Zoeken" id="search-button">
     </form>
     
     <?php
@@ -39,7 +39,7 @@ Datum: 23-05-2025
         if (empty($posts)) {
             echo "<p>Geen recepten gevonden voor '$search'</p>";
         } else {
-            echo "<p>" . count($posts) . " recept(en) gevonden:</p>";
+            echo "<p class='search-results'>" . count($posts) . " recept(en) gevonden:</p>";
             
             foreach ($posts as $post) {
                 echo '<div class="search-result">';
@@ -49,7 +49,7 @@ Datum: 23-05-2025
             }
         }
     } else {
-        echo "<p>Voer een zoekterm in om recepten te zoeken.</p>";
+        echo "<p class='no-search'>Voer een zoekterm in om recepten te zoeken.</p>";
     }
     ?>
 
